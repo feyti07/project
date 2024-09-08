@@ -1,0 +1,42 @@
+
+  <div class="cont">
+    
+    <div class="login-content">
+      <div class="logo-container">
+        <img src="/assets/snimm.png" alt="Logo" class="logo">
+        <span class="logo-text">Société nationale industrielle et minière</span>
+      </div>
+   
+  <div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+      <header>Connexion</header>
+      <form action="#" [formGroup]="_loginForm" (ngSubmit)="login()">
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+        </div>
+        <input formControlName="email" type="email" id="login" placeholder="Entrez votre email">
+        <input formControlName="password" type="password" id="password" placeholder="Entrez votre mot de passe">
+        <a href="#">Mot de passe oublié ?</a>
+        <input type="submit" class="button" value="Se connecter">
+      </form>
+      <div class="signup">
+        <span class="signup">Vous n'avez pas de compte ?
+          <button (click)="register()" type="button" class="btn btn-link">
+            S'inscrire
+          </button>
+        </span>
+      </div>
+    </div>
+   
+  </div>
+  <div class="welcome-text">
+    <h1>Bienvenue</h1>
+    <br>
+    <p>Connectez-vous pour accéder</p>
+    <p> à votre compte.</p>
+   
+  </div>
+</div>
+
+</div>

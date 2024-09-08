@@ -1,0 +1,85 @@
+<!-- user-list.component.html -->
+<div class="main-container">
+    <div>
+      <app-side-bar></app-side-bar>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Liste d'accées</span>
+            </div>
+            <div class="profile-details">
+                <div class="dropdown">
+                <button class="dropbtn">▼</button>
+              <div class="dropdown-content">
+                  <a routerLink="/profil">Profile</a>
+                  <a href="#">Paramètres</a>
+                  <a href="#">Déconnexion</a>
+              </div>
+              </div>
+                <span class="admin_name">Ahmed</span>
+                <img src="/assets/bnbn.jpg" alt="">
+
+        </div>
+        </nav>
+        <div><a routerLink="/create"><button type="button" class="btn btn-primary">Ajouter</button></a></div>
+
+        <div class="container" style="width: 90%; margin-right: 100px;">
+            <br>
+            <br>
+            <div class="content">
+      
+      <br>
+      <div class="user-list">
+        <table>
+          <thead>
+
+            <div class="show-entries">
+                  
+            </div>
+            <div class="search-box">
+              <input type="text" placeholder="Rechercher par matricule...">
+              <div class="search-icon">
+                <i class='bx bx-search'></i> <!-- Icône de recherche -->
+              </div>
+              <div class="cancel-icon">
+                <i class='bx bx-x'></i> <!-- Icône de suppression -->
+              </div>
+            </div>
+            <br>
+            <tr>
+              <th>Matricule</th>
+              <th>Nom d'utilisateur</th>
+              <th>Rôle</th>
+              <th>Active</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{ user.matricule }}</td>
+              <td>{{ user.username }}</td>
+              <td>
+                <select [ngModel]="user.role" (ngModelChange)="onRoleChange(user, $event)">
+                  <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+                </select>
+              </td>
+              <td>
+                <input type="checkbox" [checked]="user.active" (change)="onStatusChange(user)">
+              </td>
+              <td>
+                <button class="btn green" (click)="onRoleChange(user, user.role ? user.role : '')">Save</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <app-pagination [totalPages]="2" [currentPage]="1"></app-pagination>
+      </div>
+      </div>
+      </div>
+      </div>
+    </section>
+  </div>
+  

@@ -1,0 +1,10 @@
+/* src/app/statistique/statistique.component.css */
+
+.charts {
+  display: flex;
+  justify-content: space-around;
+}
+
+.pie {
+  width: 45%;
+}

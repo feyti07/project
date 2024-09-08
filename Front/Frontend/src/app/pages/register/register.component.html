@@ -1,0 +1,51 @@
+<div class="cont">
+    
+  <div class="login-content">
+    <div class="logo-container">
+      <img src="/assets/snimm.png" alt="Logo" class="logo">
+      <span class="logo-text">Société nationale industrielle et minière</span>
+    </div>
+
+    <div class="container">
+      <input type="checkbox" id="check">
+      <div class="login form">
+        <header>Inscription</header>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div *ngIf="successMessage" class="alert alert-success" role="alert">
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+          </div>
+          <input formControlName="username" type="text" id="username" placeholder="Entrez votre nom">
+          <input formControlName="email" type="email" id="email" placeholder="Entrez votre email">
+          <div class="password-container">
+            <input formControlName="password" [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Entrez votre mot de passe">
+            <button type="button" class="toggle-password" (click)="togglePassword()">
+              <i class="bx" [ngClass]="{'bx-show': showPassword, 'bx-hide': !showPassword}"></i>
+            </button>
+          </div>
+          
+          <input type="submit" class="button" value="S'inscrire">
+        </form>
+        <div class="signup">
+          <span class="signup">Vous avez déjà un compte ?
+            <button type="button" class="btn btn-link" (click)="login()">
+              Connexion
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="welcome-text">
+      <h1>Bienvenue</h1>
+      <br>
+      
+      <p>Si vous n'avez pas encore de</p>
+       <p> compte, inscrivez-vous dès </p>
+       <p> maintenant.</p>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<!-- pagination.component.html -->
+<div class="pagination-container">
+    <div class="pagination">
+      <ul>
+        <li *ngFor="let page of pages"
+            [ngClass]="{'btn': page < 0, 'numb': page > 0, 'dots': page === 0, 'active': page === currentPage}"
+            (click)="page > 0 && onPageChange(page)">
+          <span *ngIf="page === -1"><i class="fas fa-angle-left"></i> Prev</span>
+          <span *ngIf="page === -2">Next <i class="fas fa-angle-right"></i></span>
+          <span *ngIf="page > 0">{{ page }}</span>
+          <span *ngIf="page === 0">...</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

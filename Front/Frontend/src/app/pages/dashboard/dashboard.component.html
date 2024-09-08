@@ -1,0 +1,91 @@
+<div class="main-container">
+  <div>
+    <app-side-bar></app-side-bar>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i> 
+        <span class="dashboard">Acceuil</span>
+      </div>
+      <div class="profile-details">
+        <div class="dropdown">
+          <button class="dropbtn">
+            <i class='bx bx-chevron-down'></i>
+          </button>
+          <div class="dropdown-content">
+            
+            <a routerLink="/settings" style="display: flex; align-items: center; text-decoration: none; font-size: 1.0rem; font-weight: 500; color: var(--black);">
+              <i class="bx bx-cog" style="margin-right: 0.3rem; font-size: 1.7rem; color: var(--secondary); vertical-align: middle;"></i>
+              Paramètres
+            </a>
+            
+            <a routerLink="/settings" style="display: flex; align-items: center; text-decoration: none; font-size: 1.0rem; font-weight: 500; color: var(--black);">
+              <i class="bx bx-exit" style="margin-right: 0.3rem; font-size: 1.7rem; color: var(--secondary); vertical-align: middle;"></i>
+              Déconnexion
+            </a>
+            
+             
+          </div>
+        </div>
+        <span class="admin_name">Ahmed</span>
+        <img src="/assets/bnbn.jpg" alt="Profile Picture">
+      </div>
+    </nav>
+
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Demandes</div>
+            <div class="number">1{{ totalDemandesCount }}</div>
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">Total des Demandes</span>
+            </div>
+          </div>
+          <i class='bx bx-file cart'></i>
+        </div>
+        
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Réclamations</div>
+            <div class="number">15</div>
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">Total des réclamations</span>
+            </div>
+          </div>
+          <i class='bx bx-file cart two'></i>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Demendeurs</div>
+            <div class="number">18</div>
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">Total des demendeurs</span>
+            </div>
+          </div>
+          <i class='bx bx-user profile-icon'></i>
+        </div>
+      </div>
+
+      <!-- statistique -->
+      <div class="sales-boxes">
+        <div class="recent-sales box">
+          
+          <app-statistique></app-statistique>
+         
+        </div>
+
+        <div class="top-sales box">
+          <div>
+            <div [chart]="chart" style="width: 100%; height: 400px;"></div>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </section>

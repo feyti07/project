@@ -1,0 +1,61 @@
+<div class="sidebar">
+  <app-side-bar></app-side-bar>
+</div>
+<div>
+<div class="profile-page">
+    <div class="content">
+      <div class="content__cover">
+        <div *ngIf="employee">
+          <div class="content__avatar" *ngIf="photoUrl">
+            <img [src]="photoUrl" alt="Employee Photo" class="profile-photo">
+          </div>
+          <div *ngIf="!photoUrl">
+            <!-- Placeholder or alternative content when there's no photo -->
+            <p>No Photo Available</p>
+          </div>
+        </div>
+        
+        <div class="content__bull"><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="content__actions"><a href="#">
+          </a>
+          <a href="#">
+          </a></div>
+      <div class="content__title">
+        <div *ngIf="employee">
+          <h1>{{ employee.username }}</h1><span>Matricule : {{ employee.matricule }}</span>
+</div>  
+      </div>
+      <div class="content__description">
+        <div *ngIf="employee">
+          <p>Email : {{ employee.email }}</p>
+         <p>UO Code : {{ employee.uoCode }}</p>
+         <p>UO Text : {{ employee.uoText }}</p>
+         <p>Position Code : {{ employee.positionCode }}</p>
+        <p>Position Text : {{ employee.positionText }}</p>
+
+
+</div>
+      </div>
+     
+      
+      <div class=""><a class="" href="#">
+          
+          </a></div>
+    </div>
+    <div class="bg">
+      <div><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="theme-switcher-wrapper" id="theme-switcher-wrapper"><span>Themes color</span>
+      <ul>
+        <li><em class="is-active" data-theme="orange"></em></li>
+        <li><em data-theme="green"></em></li>
+        <li><em data-theme="purple"></em></li>
+        <li><em data-theme="blue"></em></li>
+      </ul>
+    </div>
+    
+  </div>
+  

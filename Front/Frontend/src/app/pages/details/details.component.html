@@ -1,0 +1,113 @@
+<div class="main-container">
+    <div>
+        <app-side-bar></app-side-bar>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Demandes</span>
+            </div>
+            <div class="profile-details">
+                <div class="dropdown">
+                <button class="dropbtn">▼</button>
+              <div class="dropdown-content">
+                  <a routerLink="/profil">Profile</a>
+                  <a href="#">Paramètres</a>
+                  <a href="#">Déconnexion</a>
+              </div>
+              </div>
+                <span class="admin_name">Ahmed</span>
+                <img src="/assets/bnbn.jpg" alt="">
+
+        </div>
+        </nav>
+   
+        <div class="content">
+          <div class="content">
+            <div class="content"> 
+        <h2 class="form-title"></h2>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="detail-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="detail" aria-selected="true">Details</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="suivi-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="suivi" aria-selected="false">Suivi</button>
+            </li>
+            
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+        <form class="form" [formGroup]="demandeForm" (ngSubmit)="updateDemande">
+            <div class="column">
+                <div class="select-container">
+                    <label for="lieu">Lieu</label>
+                    <select formControlName="lieu" id="lieu">
+                        <option *ngFor="let option of lieuOptions" [value]="option">{{ option }}</option>
+                    </select>
+                </div>
+                <div class="select-container">
+                    <label for="categorie">Catégorie</label>
+                    <select formControlName="categorie" id="categorie">
+                        <option *ngFor="let option of categorieOptions" [value]="option">{{ option }}</option>
+                    </select>
+                </div>
+            </div>
+  
+            <div class="column">
+                <div class="select-container">
+                    <label for="impact">Impact</label>
+                    <select formControlName="impact" id="impact">
+                        <option *ngFor="let option of impactOptions" [value]="option">{{ option }}</option>
+                    </select>
+                </div>
+                <div class="select-container">
+                    <label for="urgence">Urgence</label>
+                    <select formControlName="urgence" id="urgence">
+                        <option *ngFor="let option of urgenceOptions" [value]="option">{{ option }}</option>
+                    </select>
+                </div>
+            </div>
+  
+            <div class="column">
+                <div class="select-container">
+                    <label for="type">Type</label>
+                    <select formControlName="type" id="type">
+                        <option *ngFor="let option of typeOptions" [value]="option">{{ option }}</option>
+                    </select>
+                </div>
+                <div class="select-container">
+                    <label for="matricule">Matricule</label>
+                    <select formControlName="employeeMatricule" [(ngModel)]="selectedMatricule" id="matricule">
+                        <option *ngFor="let matricule of matricules" [value]="matricule">{{ matricule }}</option>
+                    </select>
+                </div>
+            </div>
+  
+            <div class="input-box">
+                <label for="description">Description</label>
+                <app-tinymce-editor class="form-control" formControlName="description" id="description" name="description" required></app-tinymce-editor>
+            </div>
+            <div class="input-box">
+                <label for="pieceJointe">Pièce Jointe</label>
+                <input type="text" class="form-control" formControlName="pieceJointe" id="pieceJointe" name="pieceJointe">
+            </div>
+  
+            <button [disabled]="demandeForm.invalid" type="submit">
+                <i class='bx bx-save'></i>&nbsp;Save
+            </button>
+        </form>
+        </div>
+        <!-- 
+        .......................suivi................ -->
+        <div>
+            <div class="tab-pane fade show active" id="suivi" role="tabpanel" aria-labelledby="suivi-tab">
+                <h1>contenue</h1>
+                </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
+  </div>

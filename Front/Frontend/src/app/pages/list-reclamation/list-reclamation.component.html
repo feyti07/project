@@ -1,0 +1,78 @@
+
+   
+              <div class="actions">
+                <button class="btn green"><a routerLink="/create"><i class='bx bx-plus'></i> Nouveau</a></button>
+                <button class="btn gray"><i class='bx bx-printer'></i> Imprimer</button>
+              </div>
+              <br>
+              <div class="table-controls">
+                <div class="show-entries">
+                  Voir 
+                  <select class="filter-select" (change)="onItemsPerPageChange($event)">
+                    <option value="3" selected>3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                  </select>
+                </div>
+                
+                <div class="search-box">
+                  <input type="text" placeholder="Rechercher par matricule..." [(ngModel)]="searchTerm" (keyup)="searchReclamations()">
+                  <div class="search-icon" (click)="toggleSearch()">
+                    <i class='bx bx-search'></i>
+                  </div>
+                  <div class="cancel-icon" (click)="clearSearch()">
+                    <i class='bx bx-x'></i>
+                  </div>
+                  <div class="search-data" *ngIf="searchTerm">
+                    
+                  </div>
+                </div>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Créateur</th>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Lieu</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Urgence</th>
+                    <th scope="col">Impact</th>
+                    <th scope="col">Statut</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let reclamation of reclamations">
+                    <td>{{ reclamation.createdAt | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ reclamation.createur }}</td>
+                    <td>{{ reclamation.employeeMatricule }}</td>
+                    <td>{{ reclamation.lieu }}</td>
+                    <td>{{ reclamation.categorie }}</td>
+                    <td>{{ reclamation.urgence }}</td>
+                    <td>{{ reclamation.impact }}</td>
+                    <td>
+                      <div class="status" [ngClass]="{
+                        'status-nouveau': reclamation.status === 'NOUVEAU',
+                        'status-attente': reclamation.status === 'ATTENTE',
+                        'status-clos': reclamation.status === 'CLOS'
+                      }">
+                        <select [(ngModel)]="reclamation.status" (change)="updateStatus(reclamation)">
+                          <option *ngFor="let status of StatusOptions" [value]="status">{{ status }}</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <i (click)="update(reclamation.id)" class='bx bx-edit' style="color: green; cursor: pointer;"></i>
+                      &nbsp;|&nbsp;
+                      <i (click)="delete(reclamation.id)" class='bx bx-trash' data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="color: red; cursor: pointer;"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="pagination">
+                <app-pagination [totalPages]="2" [currentPage]="1"></app-pagination>
+              </div>
+          
+       

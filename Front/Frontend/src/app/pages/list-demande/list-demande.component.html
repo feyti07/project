@@ -1,0 +1,131 @@
+<div class="main-container">
+    <div>
+      <app-side-bar></app-side-bar>
+    </div>
+    <section class="home-section">
+      <nav>
+        <div class="sidebar-button">
+          <i class='bx bx-menu sidebarBtn'></i>
+          <span class="dashboard">Demandes</span>
+        </div>
+        <div class="profile-details">
+          <div class="dropdown">
+            <button class="dropbtn">
+              <i class='bx bx-chevron-down'></i>
+            </button>
+            <div class="dropdown-content">
+              <a routerLink="/settings">Paramètres</a>
+              <a href="#">Déconnexion</a>
+            </div>
+          </div>
+          <span class="admin_name">Hassen</span>
+          <img src="/assets/profil.jpg" alt="Profile Picture">
+        </div>
+      </nav>
+      <div>
+        <a routerLink="/create"><button type="button" class="btn btn-primary">Ajouter</button></a>
+      </div>
+      <div class="container" style="width: 90%; margin-right: 100px;">
+        <br><br>
+  
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Demande</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Reclamation</button>
+          </li>
+        </ul>
+  
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <br>
+            <div class="content">
+              <div class="actions">
+                <button class="btn green"><a routerLink="/create"><i class='bx bx-plus'></i> Nouveau</a></button>
+                <button class="btn gray"><i class='bx bx-printer'></i> Imprimer</button>
+              </div>
+              <br>
+              <div class="table-controls">
+                <div class="show-entries">
+                  
+                </div>
+  
+                <div class="search-box">
+                  <input type="text" placeholder="Rechercher par matricule..." [(ngModel)]="searchTerm" (keyup)="searchDemandes()">
+                  <div class="search-icon" (click)="toggleSearch()">
+                    <i class='bx bx-search'></i> <!-- Icône de recherche -->
+                  </div>
+                  <div class="cancel-icon" (click)="clearSearch()">
+                    <i class='bx bx-x'></i> <!-- Icône de suppression -->
+                  </div>
+                </div>
+              </div>
+  
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Createur</th>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Lieu</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Urgence</th>
+                    <th scope="col">Impact</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let demande of demandes">
+                    <td>{{ demande.createdAt | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ demande.createur }}</td>
+                    <td>{{ demande.employeeMatricule }}</td>
+                    <td>{{ demande.lieu }}</td>
+                    <td>{{ demande.categorie }}</td>
+                    <td>{{ demande.urgence }}</td>
+                    <td>{{ demande.impact }}</td>
+                    <td>
+                      <div class="status" [ngClass]="{
+                        'status-nouveau': demande.status === 'NOUVEAU',
+                        'status-attente': demande.status === 'ATTENTE',
+                        'status-clos': demande.status === 'CLOS'
+                      }">
+                        <select [(ngModel)]="demande.status" (change)="updateStatus(demande)">
+                          <option *ngFor="let status of StatusOptions" [value]="status">{{ status }}</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <i (click)="update(demande.id)" class='bx bx-edit' style="color: green; cursor: pointer;"></i>
+                      &nbsp;|&nbsp;
+                      <i (click)="delete(demande.id)" class='bx bx-trash' data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="color: red; cursor: pointer;"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <app-pagination [totalPages]="2" [currentPage]="1"></app-pagination>
+            </div>
+  
+            </div>
+          </div>
+  
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <br>
+            <div class="content">
+              <app-list-reclamation></app-list-reclamation>
+            </div>
+          </div>
+  
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <br>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

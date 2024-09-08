@@ -1,0 +1,176 @@
+<div class="main-container">
+    <div>
+        <app-side-bar></app-side-bar>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Paramètres</span>
+            </div>
+            <div class="profile-details">
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <i class='bx bx-chevron-down'></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a routerLink="/settings">Paramètres</a>
+                        <a href="#">Déconnexion</a>
+                    </div>
+                </div>
+                <span class="admin_name">Ahmed</span>
+                <img src="/assets/bnbn.jpg" alt="Profile Picture">
+            </div>
+        </nav>
+        <div><a routerLink="/create"><button type="button" class="btn btn-primary">Ajouter</button></a></div>
+        <div class="container" style="width: 90%; margin-right: 100px;">
+            <br>
+            <br>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+                        
+                        <div class="my-4">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profile</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Mot de passe</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="compte-tab" data-bs-toggle="tab" data-bs-target="#compte" type="button" role="tab" aria-controls="compte" aria-selected="false">Compte</button>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <!-- Profile Tab Content -->
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <form>
+                                        <div class="row mt-5 align-items-center">
+                                            <div class="col-md-3 text-center mb-5">
+                                                <div class="avatar avatar-xl">
+                                                    <div *ngIf="employee">
+                                                        <div class="content__avatar" *ngIf="photoUrl">
+                                                            <img [src]="photoUrl" alt="Employee Photo" class="profile-photo">
+                                                        </div>
+                                                        <div *ngIf="!photoUrl">
+                                                            <!-- Placeholder or alternative content when there's no photo -->
+                                                            <p>No Photo Available</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-7">
+                                                        <div *ngIf="employee">
+                                                            <h4 class="mb-1">Admin</h4>
+                                                        </div>
+                                                        <p class="big mb-3">
+                                                            <span class="badge badge-dark">
+                                                                <div *ngIf="employee">Matricule : {{ employee.matricule }}</div>
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="my-4" />
+
+                                    </form>
+                                    <form>
+                                        
+                                            <div *ngIf="employee">
+                                                <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="username">Nom Complet</label>
+                                                <input type="text" class="form-control" id="username"name="username" placeholder="Admin" />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="email">Email</label>
+                                                <input type="text" class="form-control" id="email" [(ngModel)]="employee.email" name="email" placeholder="Email" />
+                                            </div>
+                                            </div>
+                                        </div>
+                                        
+                                            <div *ngIf="employee">
+                                                <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="positionText">Poste</label>
+                                                <input type="text" class="form-control" id="positionText" [(ngModel)]="employee.positionText" name="position" placeholder="Poste" />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="uoText">Département</label>
+                                                <input type="text" class="form-control" id="uoText" [(ngModel)]="employee.uoText" name="uoText" placeholder="Poste" />
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                    </form>
+                                    
+                                </div>
+                                
+                                
+                                <!-- Account Tab Content -->
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <br><br>
+                                    <form>
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="inputPassword4">Ancien mot de passe</label>
+                                                    <input type="password" class="form-control" id="inputPassword4" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword5">Nouveau mot de passe</label>
+                                                    <input type="password" class="form-control" id="inputPassword5" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword6">Confirmer le mot de passe</label>
+                                                    <input type="password" class="form-control" id="inputPassword6" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="mb-2">Exigences pour le mot de passe</p>
+                                                <p class="small text-muted mb-2">Pour créer un nouveau mot de passe, vous devez respecter toutes les exigences suivantes :</p>
+                                                <ul class="small text-muted pl-4 mb-0">
+                                                    <li>Minimum 8 caractères</li>
+                                                    <li>Au moins un caractère spécial</li>
+                                                    <li>Au moins un chiffre</li>
+                                                    <li>Ne peut pas être identique à un mot de passe précédent</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                    </form>
+                                </div>
+                                
+                                <!-- Password Change Tab Content -->
+                                <div class="tab-pane fade" id="compte" role="tabpanel" aria-labelledby="compte-tab">
+
+                                    <div class="deactivation-page">
+                                        <h1>Désactiver votre compte</h1>
+                                        <p class="info-text">Vous pouvez désactiver votre compte au lieu de le supprimer. Ce faisant, votre compte sera masqué jusqu'à ce que vous le réactiviez en vous reconnectant.</p>
+                                        <p class="info-text">Vous ne pouvez désactiver votre compte qu'une seule fois par semaine.</p>
+                                        
+                                        <form>
+                                            
+                                            <div class="form-group">
+                                                <label for="inputPassword5">Mot de passe</label>
+                                                <input type="password" class="form-control" id="inputPassword5" />
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                                        </form>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
